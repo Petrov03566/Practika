@@ -1,12 +1,12 @@
+
 from auth import Ui_MainWindow
 from PyQt5.QtWidgets import *
 from PyQt5 import *
-
 from MainWindow import MainPrinter
 
 import sys
 
-class Avtoriza (Ui_MainWindow, QMainWindow):
+class Avtoriza (Ui_MainWindow,MainPrinter):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -22,11 +22,12 @@ class Avtoriza (Ui_MainWindow, QMainWindow):
             self.main_printer = MainPrinter() 
             self.main_printer.show()  
 
+    
     def cansel_exit(self):
         self.close()
 
 
-app = QApplication(sys.argv)
-window = Avtoriza()
-window.show()
-sys.exit(app.exec_())
+# app = QApplication(sys.argv)
+# window = Avtoriza()
+# window.show()
+# sys.exit(app.exec_())
