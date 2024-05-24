@@ -3,31 +3,28 @@ from auth import Ui_MainWindow
 from PyQt5.QtWidgets import *
 from PyQt5 import *
 from MainWindow import MainPrinter
-
 import sys
 
-class Avtoriza (Ui_MainWindow,MainPrinter):
+class Avtoriza(Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.pb_auth.clicked.connect(self.open)
+        self.pb_exit.clicked.connect(self.exit)
 
-        self.label = QLabel("Welcome to the Avtoriza!", self)
-        
-
-        self.pb_auth.clicked.connect(self.add_auth)
-        self.pb_exit.clicked.connect(self.cansel_exit)
-
-    def add_auth(self):
+    def open(self):
         if self.lineEdit_log.text() == 'admin' and self.lineEdit_psw.text() == '1234':
-            self.main_printer = MainPrinter() 
-            self.main_printer.show()  
-
+            self.admin_window = MainPrinter()
+            self.admin_window.show()
+            self.close()
     
-    def cansel_exit(self):
+
+
+    def exit(self):
         self.close()
 
-
-# app = QApplication(sys.argv)
-# window = Avtoriza()
-# window.show()
-# sys.exit(app.exec_())
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = Avtoriza()
+    window.show()
+    sys.exit(app.exec_())

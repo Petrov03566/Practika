@@ -1,5 +1,4 @@
-from PyQt5.QtSql import QSqlDatabase,QSqlQuery,QSqlQueryModel, QSqlTableModel
-from PyQt5.QtCore import Qt
+from PyQt5.QtSql import *
 
 
 
@@ -13,21 +12,3 @@ def connect():
         db.open()
 
 
-# def get_models():
-#         model = QSqlQueryModel()
-#         model.setQuery(f"SELECT * FROM public.Defective(id,name_printer,breaking,flaw) VALUES ('{}',")
-
-
-
-       
-
-
-
-        
-
-
-
-        
-
-
- 
