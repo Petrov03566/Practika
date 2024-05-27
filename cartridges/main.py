@@ -5,7 +5,7 @@ from MainWindow import MainPrinter
 from avtoriza import Avtoriza
 from auth import Ui_MainWindow
 from Defective import Add_Defective,Delete_Defective
-
+from Working import Add_Working
 
 #  ##  #########################################ГЛАВНОЕ ОКНО ################################################
 class PrinterMain(MainPrinter):
@@ -14,7 +14,9 @@ class PrinterMain(MainPrinter):
         self.setupUi(self)
         self.db_connection()
         self.pb_add_defective.clicked.connect(self.open_button_defect)
-    
+        self.pb_add_working.clicked.connect(self.open_button_work)
+
+
     def db_connection(self):
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setUserName("postgres")
@@ -57,10 +59,24 @@ class PrinterMain(MainPrinter):
         self.tableView_on_clade.setModel(query4)
     
     def open_button_defect(self):
-        self.defect =Add_Defective(tableView_defective= self.tableView_defective)
+        self.defect =Add_Defective(self.tableView_defective)
         self.defect.show()
     
 
+
+    def open_button_work(self):
+        self.defect =Add_Working(self.tableView_working)
+        self.defect.show()
+    # def update_dep(self):
+    #     query = QSqlTableModel()
+    #     query.setTable("Defative")
+    #     query.select()
+    #     self.tableView_defective.setModel(query)
+
+    
+    # def df_clicked(self):
+    #     row = self.tableView_defective.selectedIndexes()[0].row()
+    #     self.current_dep = self.tableView_defective.model().index(row, 0).data()
 
 
 if __name__ == '__main__':

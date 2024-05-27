@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1718</width>
+    <width>1621</width>
     <height>937</height>
    </rect>
   </property>
@@ -73,7 +73,7 @@
      <rect>
       <x>10</x>
       <y>90</y>
-      <width>390</width>
+      <width>410</width>
       <height>730</height>
      </rect>
     </property>
@@ -219,7 +219,7 @@
      <rect>
       <x>940</x>
       <y>90</y>
-      <width>310</width>
+      <width>290</width>
       <height>730</height>
      </rect>
     </property>
@@ -281,7 +281,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>1460</x>
+      <x>1350</x>
       <y>50</y>
       <width>145</width>
       <height>37</height>
@@ -299,7 +299,7 @@
    <widget class="QTableView" name="tableView_on_clade">
     <property name="geometry">
      <rect>
-      <x>1360</x>
+      <x>1270</x>
       <y>90</y>
       <width>311</width>
       <height>727</height>
@@ -309,7 +309,7 @@
    <widget class="QPushButton" name="pushButton_add_on_clade">
     <property name="geometry">
      <rect>
-      <x>1460</x>
+      <x>1320</x>
       <y>830</y>
       <width>90</width>
       <height>30</height>
@@ -327,7 +327,7 @@
    <widget class="QPushButton" name="pushButton_delete_on_clade">
     <property name="geometry">
      <rect>
-      <x>1520</x>
+      <x>1380</x>
       <y>880</y>
       <width>90</width>
       <height>30</height>
@@ -345,7 +345,7 @@
    <widget class="QPushButton" name="pushButton_chance_on_clade">
     <property name="geometry">
      <rect>
-      <x>1580</x>
+      <x>1440</x>
       <y>830</y>
       <width>90</width>
       <height>30</height>
@@ -363,8 +363,8 @@
    <widget class="QPushButton" name="pushButton_othet">
     <property name="geometry">
      <rect>
-      <x>1620</x>
-      <y>10</y>
+      <x>1470</x>
+      <y>0</y>
       <width>90</width>
       <height>30</height>
      </rect>

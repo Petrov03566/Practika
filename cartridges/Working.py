@@ -1,12 +1,13 @@
 from add_Working import Add_Working
 from PyQt5.QtWidgets import *
 from PyQt5.QtSql import *
-from main import PrinterMain
-class WorkingAdd(PrinterMain,Add_Working):
+
+class WorkingAdd(Add_Working):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
+        self.pushButton.clicked.connect(self.add_work_button)
+        
     
     def add_work_button(self):
         if self.lineEdit.text() and self.lineEdit_2.text():
