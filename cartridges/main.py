@@ -1,4 +1,4 @@
-import sys ,psycopg2 
+import sys
 from PyQt5.QtSql import *
 from PyQt5.QtWidgets import *
 from MainWindow import MainPrinter
@@ -13,7 +13,7 @@ class PrinterMain(MainPrinter):
         super().__init__()
         self.setupUi(self)
         self.db_connection()
-        self.pb_add_defective.clicked.connect(self.add_defect)
+        self.pb_add_defective.clicked.connect(self.open_button_defect)
     
     def db_connection(self):
         db = QSqlDatabase.addDatabase("QPSQL")
@@ -23,14 +23,43 @@ class PrinterMain(MainPrinter):
         db.setDatabaseName("postgres")
         db.setHostName("localhost")
         db.open()
-          # LoginMain.auth_login_cl
-        self.db2 = psycopg2.connect(dbname= 'postgres', user = 'postgres', password = '12345678', host = 'localhost', port = 5432)
-        self.cursor = self.db2.cursor()
+       
+
+        query = QSqlTableModel()
+        sql = "SELECT * FROM public.Defective "
+        query.setTable("Defective")
+        query.select()
+        query.removeColumn(0)
+        self.tableView_defective.setModel(query)
 
 
-    def add_defect(self):
-        self.addDefect = Add_Defective(self.tableView_defective)
-        self.addDefect.show()
+        query2 = QSqlTableModel()
+        sql = "SELECT * FROM public.Refilled "
+        query2.setTable("Refilled")
+        query2.select()
+        query2.removeColumn(0)
+        self.tableView_refueled.setModel(query2)
+
+
+        query3 = QSqlTableModel()
+        sql = "SELECT * FROM public.Working "
+        query3.setTable("Working")
+        query3.select()
+        query3.removeColumn(0)
+        self.tableView_working.setModel(query3)
+        
+
+        query4 = QSqlTableModel()
+        sql = "SELECT * FROM public.On_clade "
+        query4.setTable("On_clade")
+        query4.select()
+        query4.removeColumn(0)
+        self.tableView_on_clade.setModel(query4)
+    
+    def open_button_defect(self):
+        self.defect =Add_Defective(tableView_defective= self.tableView_defective)
+        self.defect.show()
+    
 
 
 
