@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>329</width>
-    <height>284</height>
+    <width>334</width>
+    <height>294</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QPushButton" name="pb_auth">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>220</y>
+      <x>0</x>
+      <y>240</y>
       <width>100</width>
       <height>30</height>
      </rect>
@@ -36,8 +36,8 @@
    <widget class="QPushButton" name="pb_exit">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>220</y>
+      <x>240</x>
+      <y>240</y>
       <width>90</width>
       <height>30</height>
      </rect>
