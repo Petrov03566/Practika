@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Add_Working(QtWidgets.QMainWindow):
+class Ui_MainWindow(QtWidgets.QMainWindow):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(374, 197)

@@ -2,7 +2,7 @@
 from auth import Ui_MainWindow
 from PyQt5.QtWidgets import *
 from PyQt5 import *
-from MainWindow import MainPrinter
+from main import PrinterMain
 import sys
 
 class Avtoriza(Ui_MainWindow):
@@ -14,7 +14,7 @@ class Avtoriza(Ui_MainWindow):
 
     def open(self):
         if self.lineEdit_log.text() == 'admin' and self.lineEdit_psw.text() == '1234':
-            self.admin_window = MainPrinter()
+            self.admin_window = PrinterMain()
             self.admin_window.show()
             self.close()
     

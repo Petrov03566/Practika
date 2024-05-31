@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Add_Defective(QtWidgets.QMainWindow):
+class  Ui_MainWindow(QtWidgets.QMainWindow):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(331, 349)

@@ -1,14 +1,12 @@
 from PyQt5.QtSql import *
 
-
-
-def connect():
-        db = QSqlDatabase.addDatabase("QPSQL")
-        db.setDatabaseName("postgres")
-        db.setUserName("postgres")
-        db.setPassword("12345678")
-        db.setPort(5432)
-        db.setHostName("localhost")
-        db.open()
-
-
+class Database:
+    def __init__(self, main_window):
+        self.mainwindow = main_window
+        self.db = QSqlDatabase.addDatabase('QPSQL')
+        self.db.setHostName('localhost')
+        self.db.setPort(5432)
+        self.db.setDatabaseName('postgres')
+        self.db.setUserName('postgres')
+        self.db.setPassword('12345678')
+        self.db.open()
