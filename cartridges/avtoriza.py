@@ -1,4 +1,3 @@
-
 from auth import Ui_MainWindow
 from PyQt5.QtWidgets import *
 from PyQt5 import *
@@ -17,8 +16,6 @@ class Avtoriza(Ui_MainWindow):
             self.admin_window = PrinterMain()
             self.admin_window.show()
             self.close()
-    
-
 
     def exit(self):
         self.close()
