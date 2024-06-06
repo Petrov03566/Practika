@@ -92,6 +92,9 @@
       <pointsize>24</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 255, 127);</string>
+    </property>
     <property name="text">
      <string>Картридж</string>
     </property>
@@ -109,6 +112,9 @@
      <font>
       <pointsize>20</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 255, 127);</string>
     </property>
     <property name="text">
      <string>Несправен</string>
@@ -192,6 +198,9 @@
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 255, 127);</string>
+    </property>
     <property name="text">
      <string>Заправленный </string>
     </property>
@@ -209,6 +218,9 @@
      <font>
       <pointsize>20</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 255, 127);</string>
     </property>
     <property name="text">
      <string>Работающий </string>
@@ -292,6 +304,9 @@
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 255, 127);</string>
+    </property>
     <property name="text">
      <string>На складе</string>
     </property>
@@ -363,8 +378,8 @@
    <widget class="QPushButton" name="pushButton_othet">
     <property name="geometry">
      <rect>
-      <x>1470</x>
-      <y>0</y>
+      <x>1510</x>
+      <y>40</y>
       <width>90</width>
       <height>30</height>
      </rect>
@@ -378,6 +393,45 @@
      <string>Отчет</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1641</width>
+      <height>941</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../Downloads/fonstola.ru_413179.jpg</pixmap>
+    </property>
+   </widget>
+   <zorder>label_6</zorder>
+   <zorder>pb_add_defective</zorder>
+   <zorder>pb_chance_defective</zorder>
+   <zorder>pb_delete_defective</zorder>
+   <zorder>tableView_defective</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>pb_add_refueled</zorder>
+   <zorder>pb_chance_refueled</zorder>
+   <zorder>pb_delete_refueled</zorder>
+   <zorder>tableView_refueled</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>tableView_working</zorder>
+   <zorder>pb_add_working</zorder>
+   <zorder>pushButton_chance_working</zorder>
+   <zorder>pushButton_delete_working</zorder>
+   <zorder>label_5</zorder>
+   <zorder>tableView_on_clade</zorder>
+   <zorder>pushButton_add_on_clade</zorder>
+   <zorder>pushButton_delete_on_clade</zorder>
+   <zorder>pushButton_chance_on_clade</zorder>
+   <zorder>pushButton_othet</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
