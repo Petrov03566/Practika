@@ -7,13 +7,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from datetime import date
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+# from reportlab.pdfgen import canvas
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
 from PyQt5 import QtPrintSupport
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+# from reportlab.pdfgen import canvas
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
 
 class Bank(scores.Scores):
     def __init__(self):
@@ -579,6 +579,6 @@ class Print(reportWindow.Report):
         self.close()
 
 app = QApplication(sys.argv)
-window = ()
+window =Bank ()
 window.show()
 app.exec()  

@@ -1,16 +1,13 @@
 import sys 
-import add_defective
-import add_Working
-import add_Refilled
-
+import add_defective,add_Refilled,add_Working,add_On_clade
 from PyQt5 import QtCore 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel
-from PyQt5.QtWidgets import  QApplication,QHeaderView
-from PyQt5.QtCore import *
-import MainWindow 
+from PyQt5.QtWidgets import  QApplication,QHeaderView,QMainWindow
+from PyQt5.QtCore import Qt
+from MainWindow import MainPrinter
 
 #  ##  #########################################ГЛАВНОЕ ОКНО ################################################
-class PrinterMain(MainWindow.MainPrinter):
+class PrinterMain(MainPrinter):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -27,9 +24,11 @@ class PrinterMain(MainWindow.MainPrinter):
         
         self.tableView_working.clicked.connect(self.work_clicked)
         self.tableView_defective.clicked.connect(self.dp_clicked)
+        self.tableView_on_clade.clicked.connect(self.oe_clicked)
         self.tableView_defective.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableView_working.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableView_refueled.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableView_defective.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
         
 
@@ -41,11 +40,18 @@ class PrinterMain(MainWindow.MainPrinter):
         db.setHostName("localhost")
         db.open()
 
+  
         self.update_def()
         self.update_work()
         self.update_ref()
         self.update_Onclade()
-   
+        
+        self.table()
+        self.tavle2()
+        self.tavle3()
+        self.table_4()
+
+    def table(self):
         query = QSqlTableModel()
         sql = "SELECT * FROM public.Defective "
         query.setTable("Defective")
@@ -57,7 +63,7 @@ class PrinterMain(MainWindow.MainPrinter):
         query.setHeaderData(1, QtCore.Qt.Horizontal,"ломка")
         query.setHeaderData(2, QtCore.Qt.Horizontal,"недостаток")
     
-    
+    def tavle2(self):
         query2 = QSqlTableModel()
         sql = "SELECT * FROM public.Refilled"
         query2.setTable("Refilled")
@@ -72,7 +78,7 @@ class PrinterMain(MainWindow.MainPrinter):
         query2.setHeaderData(4, QtCore.Qt.Horizontal,"необходимый")
         
        
-    
+    def tavle3(self):
         query3 = QSqlTableModel()
         sql = "SELECT * FROM public.Working"
         query3.setTable("Working")
@@ -83,7 +89,7 @@ class PrinterMain(MainWindow.MainPrinter):
         query3.setHeaderData(0, QtCore.Qt.Horizontal,"Имя принтера")
         query3.setHeaderData(1, QtCore.Qt.Horizontal,"место установление")
 
- 
+    def table_4(self):
         query4 = QSqlTableModel()
         sql = "SELECT * FROM public.On_clade"
         query4.setTable("On_clade")
@@ -98,7 +104,7 @@ class PrinterMain(MainWindow.MainPrinter):
         
 #####################################################Кнопка добавление ##############################
     def add_Defective_button(self):
-        self.add_dt = Defective(self.update_def)
+        self.add_dt = Defective(self.update_def,Qt.WindowFlags) 
         self.add_dt.show()
     
     def add_Working_Button(self):
@@ -108,7 +114,9 @@ class PrinterMain(MainWindow.MainPrinter):
     def add_Refilled_button(self):
         self.add_rd =Refilled(self.current_work,self.update_ref)
         self.add_rd.show()
-
+    
+    def add_Onclade_button(self):
+        self.add_o =Onclade(self)
 
     def dp_clicked(self):
         row = self.tableView_defective.selectedIndexes()[0].row()
@@ -121,37 +129,47 @@ class PrinterMain(MainWindow.MainPrinter):
     def rd_clicked(self):
         row = self.tableView_refueled.selectedIndexes()[0].row()
         self.current_ward = self.tableView_refueled.model().index(row, 0).data()
+    def oe_clicked(self):
+        row = self.tableView_on_clade.selectedIndexes()[0].row()
+        self.current_ward = self.tableView_on_clade.model().index(row, 0).data()
 # ###############################Обновление данных ###############################
     def update_def(self):
         query = QSqlTableModel()
         query.setTable("Defective")
         query.select()
+        self.tableView_defective.hideColumn(0)
         self.tableView_defective.setModel(query)
+        
     
     def update_work(self):
         query2 = QSqlTableModel()
         query2.setTable("Working")
         query2.select()
+        self.tableView_working.hideColumn(0)
         self.tableView_working.setModel(query2)
-
+   
     def update_ref(self):
         query3 = QSqlTableModel()
         query3.setTable("Refilled")
         query3.select()
-        self.tableView_working.setModel(query3)
+        self.tableView_refueled.hideColumn(0)
+        self.tableView_refueled.setModel(query3)
         
     def update_Onclade(self):
         query4 = QSqlTableModel()
         query4.setTable("On_clade")
         query4.select()
-        self.tableView_working.setModel(query4)
+        self.tableView_on_clade.hideColumn(0)
+        self.tableView_on_clade.setModel(query4)
 
 class Defective(add_defective.Ui_MainWindow):
-    def init(self,update_def,parent=None):
+    def ___init__(self,parent,update_def):
         super().__init__(parent)
+        
         self.setupUi(self)
         
-        self.update_def =update_def
+        self.update_def =update_def  # Store the update_def method
+      
         self.pushButton_add_pr.clicked.connect(self.add_b_defective)
         self.pushButton_cansel_pr.clicked.connect(self.add_cansel_defective)
     
@@ -160,8 +178,8 @@ class Defective(add_defective.Ui_MainWindow):
         if self.lineEdit_name_pr.text() and self.lineEdit_break.text() and self.lineEdit_flaw.text():
             query_dt = QSqlQuery()
             query_dt.exec(f"INSERT INTO public.Defective(name_printer, breaking, flaw) VALUES ('{self.lineEdit_name_pr.text()}', '{self.lineEdit_break.text()}', '{self.lineEdit_flaw.text()}')")
-            self.update_def()
-
+            self.update_def()  # Call the update_def method
+            
     def add_cansel_defective(self):
         self.close()
 
@@ -204,6 +222,20 @@ class Refilled(add_Refilled.Ui_Form):
                 self.update_ref()
 
 
+class Onclade(add_On_clade.Ui_Form):
+    def __init__(self,onclade_id,update_onclade):
+        super().__init__()
+        self.setupUi(self)
+
+        self.onclade =onclade_id
+        self.update_onclade =update_onclade
+        self.pushButton_add_onclade.clicked.connect()
+
+    def add_onclade(self):
+        if self.lineEdit_nameprinter4.text() and self.lineEdit_serial_number.text() and self.lineEdit_port_number.text():
+            query_oe =QSqlQuery()
+            query_oe.exec(f"INSERT INTO public.On_clade(name_printer4,serial_number,port_number) VALUES ('{self.lineEdit_nameprinter4}','{self.lineEdit_serial_number.text()}','{self.lineEdit_port_number}')")
+            self.update_onclade()
 if __name__ == '__main__':
     app =QApplication(sys.argv)
     window =PrinterMain()
