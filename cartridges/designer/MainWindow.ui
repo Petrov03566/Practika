@@ -32,29 +32,11 @@
      <string>Добавить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pb_chance_defective">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>840</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Изменить</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pb_delete_defective">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>890</y>
+      <x>250</x>
+      <y>840</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -93,7 +75,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(85, 255, 127);</string>
+     <string notr="true">color: rgb(255, 0, 0)</string>
     </property>
     <property name="text">
      <string>Картридж</string>
@@ -114,7 +96,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(85, 255, 127);</string>
+     <string notr="true">color:rgb(255, 0, 0)</string>
     </property>
     <property name="text">
      <string>Несправен</string>
@@ -138,29 +120,11 @@
      <string>Добавить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pb_chance_refueled">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>830</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Изменить</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pb_delete_refueled">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>880</y>
+      <x>780</x>
+      <y>830</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -199,7 +163,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(85, 255, 127);</string>
+     <string notr="true">color: rgb(255, 0, 0);</string>
     </property>
     <property name="text">
      <string>Заправленный </string>
@@ -220,7 +184,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(85, 255, 127);</string>
+     <string notr="true">color:rgb(255, 0, 0)</string>
     </property>
     <property name="text">
      <string>Работающий </string>
@@ -254,29 +218,11 @@
      <string>Добавить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_chance_working">
-    <property name="geometry">
-     <rect>
-      <x>1120</x>
-      <y>830</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Изменить</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_delete_working">
     <property name="geometry">
      <rect>
-      <x>1060</x>
-      <y>880</y>
+      <x>1130</x>
+      <y>830</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -305,7 +251,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(85, 255, 127);</string>
+     <string notr="true">color:  rgb(255, 0, 0);</string>
     </property>
     <property name="text">
      <string>На складе</string>
@@ -342,8 +288,8 @@
    <widget class="QPushButton" name="pushButton_delete_on_clade">
     <property name="geometry">
      <rect>
-      <x>1380</x>
-      <y>880</y>
+      <x>1470</x>
+      <y>830</y>
       <width>90</width>
       <height>30</height>
      </rect>
@@ -357,29 +303,11 @@
      <string>Удалить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_chance_on_clade">
-    <property name="geometry">
-     <rect>
-      <x>1440</x>
-      <y>830</y>
-      <width>90</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Изменить</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_othet">
     <property name="geometry">
      <rect>
-      <x>1510</x>
-      <y>40</y>
+      <x>1520</x>
+      <y>10</y>
       <width>90</width>
       <height>30</height>
      </rect>
@@ -393,45 +321,6 @@
      <string>Отчет</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1641</width>
-      <height>941</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../Downloads/fonstola.ru_413179.jpg</pixmap>
-    </property>
-   </widget>
-   <zorder>label_6</zorder>
-   <zorder>pb_add_defective</zorder>
-   <zorder>pb_chance_defective</zorder>
-   <zorder>pb_delete_defective</zorder>
-   <zorder>tableView_defective</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>pb_add_refueled</zorder>
-   <zorder>pb_chance_refueled</zorder>
-   <zorder>pb_delete_refueled</zorder>
-   <zorder>tableView_refueled</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
-   <zorder>tableView_working</zorder>
-   <zorder>pb_add_working</zorder>
-   <zorder>pushButton_chance_working</zorder>
-   <zorder>pushButton_delete_working</zorder>
-   <zorder>label_5</zorder>
-   <zorder>tableView_on_clade</zorder>
-   <zorder>pushButton_add_on_clade</zorder>
-   <zorder>pushButton_delete_on_clade</zorder>
-   <zorder>pushButton_chance_on_clade</zorder>
-   <zorder>pushButton_othet</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

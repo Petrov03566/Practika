@@ -16,9 +16,7 @@ class Avtoriza(Ui_MainWindow):
             self.admin_window = PrinterMain()
             self.admin_window.show()
             self.close()
-        if self.lineEdit_log.text() == 'Meneger' and self.lineEdit_psw.text() == '4321':
-            self.men_window = PrinterMain()
-            self.men_window.show()
+
     def exit(self):
         self.close()
 

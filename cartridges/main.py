@@ -1,19 +1,19 @@
-import sys 
+import sys
 import add_defective,add_Refilled,add_Working,add_On_clade
 from PyQt5 import QtCore 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel
-from PyQt5.QtWidgets import  QApplication,QHeaderView,QMainWindow
+from PyQt5.QtWidgets import  QApplication,QHeaderView,QMainWindow,QWidget
 from PyQt5.QtCore import Qt
 from MainWindow import MainPrinter
 
 #  ##  #########################################ГЛАВНОЕ ОКНО ################################################
 class PrinterMain(MainPrinter):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,parent=None):
+        super().__init__(parent)
         self.setupUi(self)
         
 
-        self.current_def = 0
+        self.current_def = 0 
         self.current_ref =0
         self.current_work = 0
         self.current_onclade = 0
@@ -21,10 +21,11 @@ class PrinterMain(MainPrinter):
         self.pb_add_defective.clicked.connect(self.add_Defective_button)
         self.pb_add_working.clicked.connect(self.add_Working_Button)
         self.pb_add_refueled.clicked.connect(self.add_Refilled_button)
-        
+        self.pushButton_add_on_clade.clicked.connect(self.add_Onclade_button)
         self.tableView_working.clicked.connect(self.work_clicked)
         self.tableView_defective.clicked.connect(self.dp_clicked)
         self.tableView_on_clade.clicked.connect(self.oe_clicked)
+
         self.tableView_defective.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableView_working.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableView_refueled.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -43,7 +44,7 @@ class PrinterMain(MainPrinter):
   
         self.update_def()
         self.update_work()
-        self.update_ref()
+        self.update_ref
         self.update_Onclade()
         
         self.table()
@@ -104,7 +105,7 @@ class PrinterMain(MainPrinter):
         
 #####################################################Кнопка добавление ##############################
     def add_Defective_button(self):
-        self.add_dt = Defective(self.update_def,Qt.WindowFlags) 
+        self.add_dt = Defective(self.current_onclade, self.update_def)  # Pass self as parent
         self.add_dt.show()
     
     def add_Working_Button(self):
@@ -114,10 +115,12 @@ class PrinterMain(MainPrinter):
     def add_Refilled_button(self):
         self.add_rd =Refilled(self.current_work,self.update_ref)
         self.add_rd.show()
-    
+        
     def add_Onclade_button(self):
-        self.add_o =Onclade(self)
-
+        self.add_oe = Onclade(self.current_def,self.update_Onclade)
+        self.add_oe.show()
+ 
+        
     def dp_clicked(self):
         row = self.tableView_defective.selectedIndexes()[0].row()
         self.current_dep = self.tableView_defective.model().index(row, 0).data()
@@ -132,6 +135,7 @@ class PrinterMain(MainPrinter):
     def oe_clicked(self):
         row = self.tableView_on_clade.selectedIndexes()[0].row()
         self.current_ward = self.tableView_on_clade.model().index(row, 0).data()
+
 # ###############################Обновление данных ###############################
     def update_def(self):
         query = QSqlTableModel()
@@ -163,12 +167,12 @@ class PrinterMain(MainPrinter):
         self.tableView_on_clade.setModel(query4)
 
 class Defective(add_defective.Ui_MainWindow):
-    def ___init__(self,parent,update_def):
+    def ___init__(self,onclade_id,update_def,parent=None ):
         super().__init__(parent)
-        
         self.setupUi(self)
         
-        self.update_def =update_def  # Store the update_def method
+        self.onclade_id =onclade_id
+        self.update_def =update_def 
       
         self.pushButton_add_pr.clicked.connect(self.add_b_defective)
         self.pushButton_cansel_pr.clicked.connect(self.add_cansel_defective)
@@ -178,14 +182,14 @@ class Defective(add_defective.Ui_MainWindow):
         if self.lineEdit_name_pr.text() and self.lineEdit_break.text() and self.lineEdit_flaw.text():
             query_dt = QSqlQuery()
             query_dt.exec(f"INSERT INTO public.Defective(name_printer, breaking, flaw) VALUES ('{self.lineEdit_name_pr.text()}', '{self.lineEdit_break.text()}', '{self.lineEdit_flaw.text()}')")
-            self.update_def()  # Call the update_def method
+            self.update_def() 
             
     def add_cansel_defective(self):
         self.close()
 
 class Working(add_Working.Ui_Form):
-    def __init__(self,def_id,update_work):
-        super().__init__()
+    def __init__(self,def_id,update_work,parent=None):
+        super().__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.add_work_button)
         self.pushButton_2.clicked.connect(self.exit_ward)
@@ -199,11 +203,12 @@ class Working(add_Working.Ui_Form):
     def add_work_button(self):
         if self.lineEdit.text() and self.lineEdit_2.text():
             query_wk = QSqlQuery()
-            query_wk.exec(f"INSERT INTO publc.Working (name_printer3,place_establishment) VALUES  ('{self.lineEdit.text()}', '{self.lineEdit_2.text()}')")
+            query_wk.exec(f"INSERT INTO public.Working (name_printer3, place_establishment) VALUES ('{self.lineEdit.text()}', '{self.lineEdit_2.text()}')")
             self.update_work()
+            
 class Refilled(add_Refilled.Ui_Form):
-    def __init__(self,work_id,update_ref):
-        super().__init__()
+    def __init__(self,work_id,update_ref,parent=None):
+        super().__init__(parent)
         self.setupUi(self)
         
         self.work_id = work_id
@@ -216,28 +221,29 @@ class Refilled(add_Refilled.Ui_Form):
         self.close()
     
     def add_refilled(self):
-            if self.lineEdit_name_printer2.text() and self.lineEdit_diagnostics.text() and self.lineEdit_clearing.text() and self.lineEdit_testing_device.text() and self.lineEdit_necessary.text():
-                query_rt = QSqlQuery()
-                query_rt.exec(f"INSERT INTO public.Refilled (name_printer2,diagnostics,clearing,testing_device,necessary) VALUES  ('{self.lineEdit_name_printer2.text()}', '{self.lineEdit_diagnostics.text()}','{self.lineEdit_clearing.text()}','{self.lineEdit_testing_device.text()}',{self.lineEdit_necessary.text()})")
-                self.update_ref()
+        if self.lineEdit_name_printer2.text() and self.lineEdit_diagnostics.text() and self.lineEdit_clearing.text() and self.lineEdit_testing_device.text() and self.lineEdit_necessary.text():
+            query_rt = QSqlQuery()
+            query_rt.exec(f"INSERT INTO public.Refilled (name_printer2,diagnostics,clearing,testing_device,necessary) VALUES  ('{self.lineEdit_name_printer2.text()}', '{self.lineEdit_diagnostics.text()}','{self.lineEdit_clearing.text()}','{self.lineEdit_testing_device.text()}',{self.lineEdit_necessary.text()})")
+            self.update_ref()
 
 
 class Onclade(add_On_clade.Ui_Form):
-    def __init__(self,onclade_id,update_onclade):
-        super().__init__()
+    def __init__(self,onclade_id,update_onclade,parent=None):
+        super().__init__(parent)
         self.setupUi(self)
 
         self.onclade =onclade_id
         self.update_onclade =update_onclade
-        self.pushButton_add_onclade.clicked.connect()
+        self.pushButton_add_onclade.clicked.connect(self.add_onclade)
 
     def add_onclade(self):
         if self.lineEdit_nameprinter4.text() and self.lineEdit_serial_number.text() and self.lineEdit_port_number.text():
             query_oe =QSqlQuery()
-            query_oe.exec(f"INSERT INTO public.On_clade(name_printer4,serial_number,port_number) VALUES ('{self.lineEdit_nameprinter4}','{self.lineEdit_serial_number.text()}','{self.lineEdit_port_number}')")
+            query_oe.exec(f"INSERT INTO public.On_clade(name_printer4,serial_number,port_number) VALUES ('{self.lineEdit_nameprinter4.text()}','{self.lineEdit_serial_number.text()}','{self.lineEdit_port_number.text()}')")
             self.update_onclade()
+            
 if __name__ == '__main__':
     app =QApplication(sys.argv)
     window =PrinterMain()
     window.show()
-    app.exec()
+    sys.exit(app.exec_())
