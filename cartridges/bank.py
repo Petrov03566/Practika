@@ -1,5 +1,5 @@
 import sys
-import scores, reportWindow
+import scores
 from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel, QSqlTableModel, QSqlQuery
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui

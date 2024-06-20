@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>283</height>
+    <width>374</width>
+    <height>307</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,18 +21,13 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
-      <width>81</width>
+      <y>250</y>
+      <width>100</width>
       <height>30</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(85, 255, 0);</string>
     </property>
     <property name="text">
      <string>Вход</string>
@@ -41,19 +36,15 @@
    <widget class="QPushButton" name="pb_exit">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>180</y>
-      <width>71</width>
+      <x>260</x>
+      <y>250</y>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">
+background-color: rgb(85, 255, 0);</string>
     </property>
     <property name="text">
      <string>Выход</string>
@@ -62,10 +53,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>101</width>
-      <height>30</height>
+      <x>130</x>
+      <y>50</y>
+      <width>80</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
@@ -83,9 +74,9 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>90</y>
-      <width>110</width>
+      <x>130</x>
+      <y>120</y>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -104,33 +95,47 @@
    <widget class="QLineEdit" name="lineEdit_log">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>270</width>
+      <x>50</x>
+      <y>80</y>
+      <width>250</width>
       <height>30</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_psw">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>130</y>
-      <width>270</width>
+      <x>50</x>
+      <y>180</y>
+      <width>250</width>
       <height>30</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>381</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 255, 0);
+color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Ариант</string>
     </property>
    </widget>
+   <zorder>label_3</zorder>
+   <zorder>pb_auth</zorder>
+   <zorder>pb_exit</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>lineEdit_log</zorder>
+   <zorder>lineEdit_psw</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
