@@ -1,7 +1,7 @@
 import sys
-from Working1 import Working,DeleteWorking
-from Defect import Defective,DeleteDefective
-from Refilled1 import Refilled,DeleteRefilled
+from Working1 import Working
+from Defect import Defective
+from Refilled1 import Refilled
 from onclade import Onclade
 from PyQt5 import QtCore 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel,QSqlQueryModel
@@ -42,9 +42,9 @@ class PrinterMain(MainPrinter):
 
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setUserName("postgres")
-        db.setPassword("12345678") 
+        db.setPassword("Doctor") 
         db.setPort(5432)
-        db.setDatabaseName("postgres")
+        db.setDatabaseName("Cartridges")
         db.setHostName("localhost")
         db.open()
         if db.open():
@@ -64,7 +64,7 @@ class PrinterMain(MainPrinter):
 
     def table(self):
         query = QSqlTableModel()
-        sql = "SELECT * FROM public.Defective "
+        sql = "SELECT * FROM public.Defective"
         query.setTable("Defective")
         query.select()
         query.removeColumn(0)
@@ -119,30 +119,85 @@ class PrinterMain(MainPrinter):
         self.add_dt.show() # Pass self as parent
     
     def delete_defective(self):
-        self.delete_defect = DeleteDefective(self.tableView_defective,self.update_def )
-        self.delete_defect.show()
+            query_del = QSqlTableModel()
+            query_del.setTable("Defective")
+            query_del.select()
+            selected = self.tableView_defective.selectedIndexes()
+
+            rows = set(index.row() for index in selected)
+            rows = list(rows)
+            rows.sort()
+            if selected:
+                first = rows[0]
+                query_del.removeRow(first)
+                query_del.select()
+
+            query = QSqlTableModel()
+            query.setTable("Defective")
+            query.select()
+            self.tableView_defective.setModel(query)
+            self.tableView_defective.setColumnHidden(0,True)
+
         
     def add_Working_Button(self):
         self.add_w = Working(self.current_def, self.update_work)
         self.add_w.show()
 
     def delete_working(self):
-        self.delete_w = DeleteWorking(self.tableView_working,self.update_work)
-        self.delete_w.show()
+            query_work = QSqlTableModel()
+            query_work.setTable("Working")
+            query_work.select()
+            selected = self.tableView_working.selectedIndexes()
+
+            rows = set(index.row() for index in selected)
+            rows = list(rows)
+            rows.sort()
+            if selected:
+                first = rows[0]
+                query_work.removeRow(first)
+                query_work.select()
+                
+            query_work = QSqlTableModel()
+            query_work.setTable("Defective")
+            query_work.select()
+            self.tableView_working.setModel(query_work)
+            self.tableView_working.setColumnHidden(0,True)
+
+
 
     def add_Refilled_button(self):
         self.add_rd =Refilled(self.current_work,self.update_ref)
         self.add_rd.show()
+
     def delete_refilled(self):
-        self.delete_ref =DeleteRefilled(self.tableView_refueled,self.update_ref)
-        self.delete_ref.show() 
-    
+            query_ref = QSqlTableModel()
+            query_ref.setTable("Refilled")
+            query_ref.select()
+            selected = self.tableView_refueled.selectedIndexes()
+
+            rows = set(index.row() for index in selected)
+            rows = list(rows)
+            rows.sort()
+            if selected:
+                first = rows[0]
+                query_ref.removeRow(first)
+                query_ref.select()
+            
+            
+            query_ref = QSqlTableModel()
+            query_ref.setTable("Defective")
+            query_ref.select()
+            self.tableView_refueled.setModel(query_ref)
+            self.tableView_refueled.setColumnHidden(0,True)
+
+
+
     def add_Onclade_button(self):
         self.add_oe = Onclade(self.current_def,self.update_Onclade)
         self.add_oe.show()
 
     
- 
+    
         
     def dp_clicked(self):
         row = self.tableView_defective.selectedIndexes()[0].row()
@@ -188,7 +243,7 @@ class PrinterMain(MainPrinter):
         query4.select()
         self.tableView_on_clade.hideColumn(0)
         self.tableView_on_clade.setModel(query4)
-
+    
             
 if __name__ == '__main__':
     app =QApplication(sys.argv)

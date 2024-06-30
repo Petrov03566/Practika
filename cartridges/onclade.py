@@ -17,6 +17,6 @@ class Onclade(add_On_clade.Ui_Form):
     def add_onclade(self):
         if self.lineEdit_nameprinter4.text() and self.lineEdit_serial_number.text() and self.lineEdit_port_number.text():
             query_oe =QSqlQuery()
-            query_oe.exec(f"INSERT INTO public.On_clade(name_printer4,serial_number,port_number) VALUES ('{self.lineEdit_nameprinter4.text()}','{self.lineEdit_serial_number.text()}','{self.lineEdit_port_number.text()}')")
+            query_oe.exec(f"INSERT INTO public.\"On_clade\"(name_printer4,serial_number,port_number) VALUES ('{self.lineEdit_nameprinter4.text()}','{self.lineEdit_serial_number.text()}','{self.lineEdit_port_number.text()}')")
             self.update_onclade()
             
