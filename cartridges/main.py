@@ -1,8 +1,8 @@
 import sys
-from Working1 import Working
+from Working import Working
 from Defect import Defective
-from Refilled1 import Refilled
-from onclade import Onclade
+from Refilled import Refilled
+from Onclade import Oncladeadd
 from PyQt5 import QtCore 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel,QSqlQueryModel
 from PyQt5.QtWidgets import  QApplication,QHeaderView,QMainWindow,QWidget
@@ -28,6 +28,7 @@ class PrinterMain(MainPrinter):
         self.pb_delete_defective.clicked.connect(self.delete_defective)
         self.pushButton_delete_working.clicked.connect(self.delete_working)
         self.pb_delete_refueled.clicked.connect(self.delete_refilled)
+        self.pushButton_delete_on_clade.clicked.connect(self.delete_Onclade)
         self.pushButton_add_on_clade.clicked.connect(self.add_Onclade_button)
         self.tableView_working.clicked.connect(self.work_clicked)
         self.tableView_defective.clicked.connect(self.dp_clicked)
@@ -42,9 +43,9 @@ class PrinterMain(MainPrinter):
 
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setUserName("postgres")
-        db.setPassword("Doctor") 
+        db.setPassword("12345678") 
         db.setPort(5432)
-        db.setDatabaseName("Cartridges")
+        db.setDatabaseName("postgres")
         db.setHostName("localhost")
         db.open()
         if db.open():
@@ -54,7 +55,7 @@ class PrinterMain(MainPrinter):
 
         self.update_def()
         self.update_work()
-        self.update_ref
+        self.update_ref()
         self.update_Onclade()
         
         self.table()
@@ -158,7 +159,7 @@ class PrinterMain(MainPrinter):
                 query_work.select()
                 
             query_work = QSqlTableModel()
-            query_work.setTable("Defective")
+            query_work.setTable("Working")
             query_work.select()
             self.tableView_working.setModel(query_work)
             self.tableView_working.setColumnHidden(0,True)
@@ -185,18 +186,37 @@ class PrinterMain(MainPrinter):
             
             
             query_ref = QSqlTableModel()
-            query_ref.setTable("Defective")
+            query_ref.setTable("Refilled")
             query_ref.select()
             self.tableView_refueled.setModel(query_ref)
             self.tableView_refueled.setColumnHidden(0,True)
 
 
 
-    def add_Onclade_button(self):
-        self.add_oe = Onclade(self.current_def,self.update_Onclade)
-        self.add_oe.show()
 
-    
+    def add_Onclade_button(self):
+        self.add_oe = Oncladeadd(self.current_work,self.update_Onclade)
+        self.add_oe.show()
+        
+    def delete_Onclade(self):
+            query_onclade = QSqlTableModel()
+            query_onclade.setTable("On_clade")
+            query_onclade.select()
+            selected = self.tableView_on_clade.selectedIndexes()
+
+            rows = set(index.row() for index in selected)
+            rows = list(rows)
+            rows.sort()
+            if selected:
+                first = rows[0]
+                query_onclade.removeRow(first)
+                query_onclade.select()
+
+            query_onclade = QSqlTableModel()
+            query_onclade.setTable("On_clade")
+            query_onclade.select()
+            self.tableView_on_clade.setModel(query_onclade)
+            self.tableView_on_clade.setColumnHidden(0,True)
     
         
     def dp_clicked(self):

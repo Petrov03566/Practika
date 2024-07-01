@@ -1,7 +1,7 @@
 from PyQt5 import QtCore 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel,QSqlQueryModel
 from PyQt5.QtWidgets import  QApplication,QHeaderView,QMainWindow,QWidget,QTableView
-import add_defective,delete_defective
+import add_defective
 
 class Defective(add_defective.Ui_MainWindow):
     def __init__(self,  update_def,parent=None): 

@@ -303,6 +303,24 @@
      <string>Удалить</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_othet">
+    <property name="geometry">
+     <rect>
+      <x>1520</x>
+      <y>10</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Отчет</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
